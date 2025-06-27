@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SecureAuth - User Authentication System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Login Page -->
+        <div id="loginPage" class="page active">
+            <div class="header">
+                <div class="logo">🔐 SecureAuth</div>
+                <div class="subtitle">Secure User Authentication System</div>
+            </div>
+            
+            <div class="form-container">
+                <div id="loginAlert" class="alert alert-error" style="display: none;"></div>
+                
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="loginEmail">Email Address</label>
+                        <input type="email" id="loginEmail" required value="admin@example.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="loginPassword">Password</label>
+                        <div class="password-container">
+                            <input type="password" id="loginPassword" required value="admin123">
+                            <button type="button" class="password-toggle" onclick="togglePassword('loginPassword')">👁️</button>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Sign In Securely</button>
+                </form>
+                
+                <div class="link">
+                    <a href="#" onclick="showPage('registerPage')">Don't have an account? Sign up</a>
+                </div>
+                
+                <div class="session-info">
+                    <strong>Demo Credentials:</strong><br>
+                    Admin: admin@example.com / admin123<br>
+                    User: user@example.com / user123
+                </div>
+            </div>
+        </div>
+
+        <!-- Register Page -->
+        <div id="registerPage" class="page">
+            <div class="header">
+                <div class="logo">🔐 SecureAuth</div>
+                <div class="subtitle">Create Your Secure Account</div>
+            </div>
+            
+            <div class="form-container">
+                <div id="registerAlert" class="alert alert-success" style="display: none;"></div>
+                
+                <form id="registerForm">
+                    <div class="form-group">
+                        <label for="registerName">Full Name</label>
+                        <input type="text" id="registerName" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="registerEmail">Email Address</label>
+                        <input type="email" id="registerEmail" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="registerPassword">Password</label>
+                        <div class="password-container">
+                            <input type="password" id="registerPassword" required minlength="6">
+                            <button type="button" class="password-toggle" onclick="togglePassword('registerPassword')">👁️</button>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="registerRole">Account Type</label>
+                        <select id="registerRole" required>
+                            <option value="">Select Role</option>
+                            <option value="user">Standard User</option>
+                            <option value="admin">Administrator</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Create Account</button>
+                </form>
+                
+                <div class="link">
+                    <a href="#" onclick="showPage('loginPage')">Already have an account? Sign in</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dashboard Page -->
+        <div id="dashboardPage" class="page">
+            <div class="header">
+                <div class="logo">🔐 SecureAuth Dashboard</div>
+                <button class="btn btn-secondary" onclick="logout()" style="position: absolute; top: 20px; right: 20px; width: auto; padding: 8px 16px;">Logout</button>
+            </div>
+            
+            <div class="dashboard">
+                <div class="user-info">
+                    <div class="user-avatar" id="userAvatar">👤</div>
+                    <div class="user-name" id="userName">Loading...</div>
+                    <div class="user-role" id="userRole">Loading...</div>
+                    <div class="session-info" style="margin-top: 1rem; background: rgba(255,255,255,0.1);">
+                        <strong>Session Info:</strong><br>
+                        Logged in: <span id="loginTime"></span><br>
+                        Session ID: <span id="sessionId"></span>
+                    </div>
+                </div>
+                
+                <div class="main-content">
+                    <div class="content-section">
+                        <h3>🎯 Protected Content Access</h3>
+                        <p>Welcome to the secure dashboard! Your authentication was successful and you now have access to protected routes based on your role.</p>
+                        
+                        <div class="feature-grid">
+                            <div class="feature-card">
+                                <div class="feature-icon">📊</div>
+                                <h4>Analytics</h4>
+                                <p>View system analytics and reports</p>
+                            </div>
+                            
+                            <div class="feature-card">
+                                <div class="feature-icon">⚙️</div>
+                                <h4>Settings</h4>
+                                <p>Configure your account preferences</p>
+                            </div>
+                            
+                            <div class="feature-card" id="adminFeature" style="display: none;">
+                                <div class="feature-icon">👥</div>
+                                <h4>User Management</h4>
+                                <p>Admin-only user management tools</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="content-section">
+                        <h3>🔒 Security Features Demonstrated</h3>
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">✅ Secure password hashing (simulated)</li>
+                            <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">✅ Session management with unique IDs</li>
+                            <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">✅ Role-based access control</li>
+                            <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">✅ Protected route authentication</li>
+                            <li style="padding: 0.5rem 0;">✅ Input validation and sanitization</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
